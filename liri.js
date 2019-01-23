@@ -43,6 +43,7 @@ function bands(input) {
 		// console.log("Event Date: " + JSON.parse(body)[0].datetime.formattedDate);
 });
 
+}
 
 //Function for spotify-this-song input
 function spotify(input) {
@@ -96,4 +97,4 @@ function random() {
       spotify(text[1]);
     });
   }
-}
+
