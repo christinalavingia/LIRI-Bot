@@ -31,8 +31,18 @@ switch(action) {
 
 //Function for concert-this input
 function bands(input) {
-	
-}
+
+	var queryUrl = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp";
+
+	request(queryUrl, function(err, response, body) {
+		 
+		console.log("Venue: " + JSON.parse(body)[0].venue.name);
+		console.log("Location: " + JSON.parse(body)[0].venue.city);
+		var date = JSON.parse(body)[0].datetime;
+		// formattedDate = moment().format("MM/DD/YYYY");
+		// console.log("Event Date: " + JSON.parse(body)[0].datetime.formattedDate);
+});
+
 
 //Function for spotify-this-song input
 function spotify(input) {
@@ -65,7 +75,7 @@ function movie(input) {
 
 	var queryUrl = "http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy";
 		
-	request(queryUrl, function(error, response, body) {
+	request(queryUrl, function(err, response, body) {
 
 		    console.log("Title: " + JSON.parse(body).Title);
 		    console.log("Release Year: " + JSON.parse(body).Year);
@@ -86,4 +96,4 @@ function random() {
       spotify(text[1]);
     });
   }
-
+}
