@@ -31,7 +31,7 @@ switch(action) {
 
 //Function for concert-this input
 function bands(input) {
-
+	
 }
 
 //Function for spotify-this-song input
@@ -59,13 +59,13 @@ var spotify = new Spotify(keys.spotify);
 //Function for movie-this input
 function movie(input) {
 
-	var queryUrl = "http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy";
+	if (!input) {
+		input = 'Mr. Nobody';
+	}
 
+	var queryUrl = "http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy";
+		
 	request(queryUrl, function(error, response, body) {
-		if (!input){
-        	input = 'Mr. Nobody';
-    	}
-		if (!error && response.statusCode === 200) {
 
 		    console.log("Title: " + JSON.parse(body).Title);
 		    console.log("Release Year: " + JSON.parse(body).Year);
@@ -75,7 +75,6 @@ function movie(input) {
 		    console.log("Language: " + JSON.parse(body).Language);
 		    console.log("Plot: " + JSON.parse(body).Plot);
 		    console.log("Actors: " + JSON.parse(body).Actors);
-		}
 	});
 }
 
@@ -84,7 +83,7 @@ function random() {
     fs.readFile('random.txt', "utf8", function(err, data){
       var text = data.split(',');
   
-      spotifyThisSong(text[1]);
+      spotify(text[1]);
     });
   }
 
