@@ -4,6 +4,7 @@ var keys = require("./keys.js");
 var request = require("request");
 var Spotify = require("node-spotify-api");
 var fs = require("fs");
+var moment = require("moment");
 var action = process.argv[2];
 var input = process.argv[3];
 
@@ -39,8 +40,8 @@ function bands(input) {
 		console.log("Venue: " + JSON.parse(body)[0].venue.name);
 		console.log("Location: " + JSON.parse(body)[0].venue.city);
 		var date = JSON.parse(body)[0].datetime;
-		// formattedDate = moment().format("MM/DD/YYYY");
-		// console.log("Event Date: " + JSON.parse(body)[0].datetime.formattedDate);
+		var formattedDate = moment(date).format("MM/DD/YYYY");
+		console.log("Event Date: " + formattedDate);
 });
 
 }
